@@ -6,28 +6,28 @@ function verifica() {
     let pass = document.getElementById("password").value;
     let err = document.getElementById("errore");
 
-    for(i=0; i < utenti.length; i++){
-        if(user == utenti[i]){
-            if(pass == password[i]){
-                err.classList.add("d-none");
-                console.log("acccesso");
-                return;
-            } else {
+            if(password[utenti.indexOf(user)] == pass){
+                err.classList.remove("d-none")
+                err.innerHTML = ("Login successful");
+                err.classList.add("alert-success");
+                err.classList.remove("alert-danger");
+            } else if(utenti.indexOf(user) != -1) {
                 err.classList.remove("d-none");
-                err.innerHTML = ("Login failed. Password incorrect")
-                return;
-            }
-        }
-    }
+                err.innerHTML = ("Login failed. Password incorrect");
+                err.classList.add("alert-danger");
+                err.classList.remove("alert-success");
+            } else {
     err.classList.remove("d-none");
     err.innerHTML = ("Login failed. User not registered")
+    err.classList.add("alert-danger");
+    }
 }
 
 function rivelaPass() {
     let word = document.getElementById("password");
-     let icona = document.getElementById("rivela");
+    let icona = document.getElementById("rivela");
 
-    if (word.type === "password") {
+    if (word.type == "password") {
         word.type = "text";
         icona.classList.remove("bi-eye-slash");
         icona.classList.add("bi-eye");
